@@ -1,0 +1,84 @@
+# robots.txt — SGS Digital
+# Dominio principal: https://sgsdigital.dev/
+# Objetivo: permitir indexacao por buscadores e bloquear areas tecnicas/internas.
+
+User-agent: *
+Allow: /
+
+# Bloqueios preventivos para pastas tecnicas, rascunhos ou arquivos internos.
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /drafts/
+Disallow: /backup/
+Disallow: /backups/
+Disallow: /old/
+Disallow: /test/
+Disallow: /tests/
+Disallow: /dev/
+Disallow: /staging/
+Disallow: /assets/raw/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /package-lock.json
+Disallow: /package.json
+
+# Permitir arquivos publicos importantes para renderizacao e SEO.
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+Allow: /images/
+Allow: /fonts/
+Allow: /favicon.ico
+Allow: /manifest.json
+
+# Sitemap principal.
+Sitemap: https://sgsdigital.dev/sitemap.xml
+
+# Bloqueio opcional de bots de treinamento de IA.
+# Mantem Google/Bing liberados para SEO, mas sinaliza que conteudo nao deve ser usado para treino.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Meta-ExternalFetcher
+Disallow: /
