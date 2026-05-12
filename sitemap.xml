@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- sitemap.xml — SGS Digital -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- Domínio canônico: https://sgsdigital.dev/ -->
+<!-- Estratégia: indexar somente a URL oficial/canônica da SGS Digital, evitando duplicidade dos presets desktop e da versão mobile. -->
+
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
   <url>
     <loc>https://sgsdigital.dev/</loc>
     <lastmod>2026-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.00</priority>
+
+    <image:image>
+      <image:loc>https://saintsgs-hub.github.io/SGS-Digital-Assets/images/SGSBannerHoverSites.png</image:loc>
+      <image:title>SGS Digital — Sites de Alto Padrão e Presença Digital</image:title>
+      <image:caption>Imagem principal da SGS Digital, marca de presença digital premium fundada por Luan São Geraldo.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://saintsgs-hub.github.io/SGS-Digital-Assets/assets/favicon/favicon-512x512.png</image:loc>
+      <image:title>Logo SGS Digital</image:title>
+      <image:caption>Identidade visual da SGS Digital, presença digital autoral para marcas que não querem parecer comuns.</image:caption>
+    </image:image>
   </url>
+
 </urlset>
