@@ -128,31 +128,39 @@
               return chooseBestDesktopPreset().file;
             }
 
-            function buildTargetUrl(fileName) {
-              var directory = (location.pathname || "/").replace(/[^\/]*$/, "");
-              return location.protocol + "//" + location.host + directory + fileName + location.search + location.hash;
+            function normalizeRouteName(value) {
+              var route = String(value || "");
+              route = route.split("#")[0].split("?")[0].replace(/\/+$/, "");
+              route = route.split("/").pop() || "index";
+              route = route.replace(/\.html$/i, "");
+              return (route || "index").toLowerCase();
             }
 
-            function getCurrentFile() {
-              var current = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-              return current || "index.html";
+            function buildTargetUrl(fileName) {
+              var currentPath = (location.pathname || "/").replace(/\/+$/, "") || "/";
+              var directory = currentPath.replace(/[^\/]*$/, "");
+              var routeName = normalizeRouteName(fileName);
+              return location.protocol + "//" + location.host + directory + routeName + location.search + location.hash;
             }
 
             function routeBeforeExperience() {
               var desiredFile = getDesiredFile();
-              var currentFile = getCurrentFile();
+              var currentRoute = normalizeRouteName(location.pathname);
+              var desiredRoute = normalizeRouteName(desiredFile);
+              var targetUrl = buildTargetUrl(desiredFile);
 
               if (SGS_ROUTER_DEBUG && window.console) {
                 console.log("[SGS Desktop Preset Router]", {
                   candidates: collectResolutionCandidates(),
-                  chosen: chooseBestDesktopPreset(),
-                  currentFile: currentFile,
-                  desiredFile: desiredFile
+                  "chosen preset": chooseBestDesktopPreset(),
+                  currentRoute: currentRoute,
+                  desiredRoute: desiredRoute,
+                  targetUrl: targetUrl
                 });
               }
 
-              if (currentFile === desiredFile.toLowerCase()) return;
-              location.replace(buildTargetUrl(desiredFile));
+              if (currentRoute === desiredRoute) return;
+              location.replace(targetUrl);
             }
 
             routeBeforeExperience();
