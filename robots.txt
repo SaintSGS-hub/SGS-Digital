@@ -1,11 +1,35 @@
 # robots.txt — SGS Digital
-# Dominio principal: https://sgsdigital.dev/
-# Objetivo: permitir indexacao por buscadores e bloquear areas tecnicas/internas.
+# Domínio principal: https://sgsdigital.dev/
+# Marca: SGS Digital — Presença Digital de Alto Padrão
+# Fundador: Luan São Geraldo
+# Objetivo:
+# - maximizar indexação pública em buscadores;
+# - preservar rastreamento de assets necessários;
+# - evitar indexação de áreas técnicas/internas;
+# - permitir busca assistida por IA quando gerar descoberta/citação;
+# - bloquear crawlers focados em treino/coleta ampla sem benefício direto de presença.
+
+# ================================
+# BUSCADORES E INDEXAÇÃO GERAL
+# ================================
 
 User-agent: *
 Allow: /
 
-# Bloqueios preventivos para pastas tecnicas, rascunhos ou arquivos internos.
+# Arquivos públicos essenciais
+Allow: /robots.txt
+Allow: /sitemap.xml
+Allow: /favicon.ico
+Allow: /manifest.json
+
+# Assets públicos necessários para renderização, preview, SEO e experiência visual
+Allow: /assets/
+Allow: /images/
+Allow: /fonts/
+Allow: /css/
+Allow: /js/
+
+# Bloqueios preventivos para áreas técnicas, internas, rascunhos e arquivos sensíveis
 Disallow: /admin/
 Disallow: /private/
 Disallow: /tmp/
@@ -20,52 +44,138 @@ Disallow: /staging/
 Disallow: /assets/raw/
 Disallow: /node_modules/
 Disallow: /.git/
+Disallow: /.github/
 Disallow: /.env
-Disallow: /package-lock.json
 Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /pnpm-lock.yaml
+Disallow: /yarn.lock
+Disallow: /vite.config.js
+Disallow: /webpack.config.js
+Disallow: /tailwind.config.js
+Disallow: /tsconfig.json
 
-# Permitir arquivos publicos importantes para renderizacao e SEO.
-Allow: /css/
-Allow: /js/
-Allow: /assets/
-Allow: /images/
-Allow: /fonts/
-Allow: /favicon.ico
-Allow: /manifest.json
+# ================================
+# GOOGLE / SEO PRINCIPAL
+# ================================
 
-# Sitemap principal.
-Sitemap: https://sgsdigital.dev/sitemap.xml
+User-agent: Googlebot
+Allow: /
 
-# Bloqueio opcional de bots de treinamento de IA.
-# Mantem Google/Bing liberados para SEO, mas sinaliza que conteudo nao deve ser usado para treino.
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+# Permitir Google-Extended neste momento para ampliar presença da SGS no ecossistema Google/Gemini.
+# Caso no futuro a prioridade seja máxima restrição de uso por IA, trocar para Disallow: /
+User-agent: Google-Extended
+Allow: /
+
+# ================================
+# BING / MICROSOFT / BUSCA
+# ================================
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+# ================================
+# OUTROS BUSCADORES ÚTEIS
+# ================================
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# ================================
+# OPENAI / CHATGPT
+# Estratégia:
+# - permitir descoberta, busca e citações com link;
+# - bloquear crawler de treino amplo.
+# ================================
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
 User-agent: GPTBot
 Disallow: /
 
-User-agent: ChatGPT-User
-Disallow: /
+# ================================
+# PERPLEXITY / YOU.COM
+# Estratégia:
+# - permitir busca assistida, citações e descoberta pública.
+# ================================
 
-User-agent: CCBot
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# ================================
+# ANTHROPIC / CLAUDE
+# Estratégia:
+# - bloquear treino/coleta ampla;
+# - permitir agentes acionados por usuário/busca, caso respeitem robots.
+# ================================
+
+User-agent: ClaudeBot
 Disallow: /
 
 User-agent: anthropic-ai
 Disallow: /
 
-User-agent: ClaudeBot
-Disallow: /
-
 User-agent: Claude-Web
 Disallow: /
 
-User-agent: PerplexityBot
-Disallow: /
+User-agent: Claude-User
+Allow: /
 
-User-agent: YouBot
-Disallow: /
+User-agent: Claude-SearchBot
+Allow: /
+
+# ================================
+# APPLE GENERATIVE AI
+# Permite Applebot normal via regra acima, mas bloqueia uso ampliado para treino generativo.
+# ================================
 
 User-agent: Applebot-Extended
 Disallow: /
 
-User-agent: Google-Extended
+# ================================
+# COMMON CRAWL / COLETORES AMPLOS
+# Estratégia:
+# - bloquear datasets amplos sem benefício direto de autoridade para a SGS.
+# ================================
+
+User-agent: CCBot
 Disallow: /
 
 User-agent: Bytespider
@@ -77,8 +187,20 @@ Disallow: /
 User-agent: ImagesiftBot
 Disallow: /
 
+# ================================
+# META / AGENTES EXTERNOS
+# Mantém bloqueio para crawlers externos de IA/coleta.
+# Não bloqueia facebookexternalhit, para não prejudicar previews de links.
+# ================================
+
 User-agent: Meta-ExternalAgent
 Disallow: /
 
 User-agent: Meta-ExternalFetcher
 Disallow: /
+
+# ================================
+# SITEMAP PRINCIPAL
+# ================================
+
+Sitemap: https://sgsdigital.dev/sitemap.xml
